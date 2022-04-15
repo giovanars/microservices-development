@@ -15,8 +15,10 @@ O objetivo desse projeto é apresentar o desenvolvimento da solução desenhada 
 
 
 Baseado nessa solução nesse repositório estamos parte da solução técnica, onde desenvolvemos dois dos microserviços mostrados na solução:
-- ms-order (Ms Pedido, como está no desenho): //TODO: Descrever a solução e as tecnoligias utilizadas
-- ms-menu  (MS Cardápio, como está no desenho): //TODO: Descrever a solução e as tecnoligias utilizadas
+- ms-order (Ms Pedido, como está no desenho) 
+    //TODO: Descrever a solução e as tecnoligias utilizadas
+- ms-menu  (MS Cardápio, como está no desenho) 
+    //TODO: Descrever a solução e as tecnoligias utilizadas
 
 ## Como configurar o projeto?
 //TODO: Descrever o passo a passo de configuração dos projetos
