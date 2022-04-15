@@ -4,13 +4,13 @@ Esse é um repositório destinado a entrega final do trabalho final da disciplin
 
 O objetivo desse projeto é apresentar o desenvolvimento da solução desenhada na primeira parte do trabalho final. Nesse primiera parte nós descrevemos um problema que queriamos resolver, desenhamos o Domain Story Telling e por fim desenhamos uma solução para resolver o problema como pode ser visto abaixo.
 
-### Descrição do problema
+#### Descrição do problema
 ![Screenshot](docs/IMG-1.png)
 
-### Domain Story Telling
+#### Domain Story Telling
 ![Screenshot](docs/IMG-2.png)
 
-### Desenho da solução
+#### Desenho da solução
 ![Screenshot](docs/IMG-3.png)
 
 
