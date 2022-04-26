@@ -1,12 +1,19 @@
 version: '3'
 
 services:
-  mysqlsrv:
-    image: mysql:5.7
+  mongo:
+    image: mongo
     environment:
-      MYSQL_ROOT_PASSWORD: "1234"
-      MYSQL_DATABASE: "menu"
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_INITDB_DATABASE: menu
     ports:
-      - "3307:3306"
+      - "27017:27017"
     volumes:
-      - /home/dev/Docker/Volumes/MySql:/var/lib/mysql
+      - /home/dev/Docker/Volumes/MongoDB:/data/db
+    networks:
+      - mongo-compose-network
+
+networks:
+  mongo-compose-network:
+    driver: bridge
