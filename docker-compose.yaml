@@ -1,7 +1,8 @@
-version: '3'
+version: "3.2"
 
 services:
-  mongo:
+  menu_mongo_db:
+    container_name: menu_mongo_db
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -10,10 +11,26 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /home/dev/Docker/Volumes/MongoDB:/data/db
-    networks:
-      - mongo-compose-network
+      - /home/dev/Docker/Volumes/MenuMongoDB:/data/db
 
-networks:
-  mongo-compose-network:
-    driver: bridge
+  order_mongo_db:
+    container_name: order_mongo_db
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_INITDB_DATABASE: order
+    ports:
+      - "27018:27017"
+    volumes:
+      - /home/dev/Docker/Volumes/OrderMongoDB:/data/db
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management-alpine
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
