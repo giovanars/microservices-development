@@ -1,6 +1,14 @@
 version: "3.2"
 
 services:
+  menu_api:
+    container_name: menu_api
+    image: menu_api
+    build:
+      context: ./ms-menu
+    ports:
+      - "8080:8080"       
+
   menu_mongo_db:
     container_name: menu_mongo_db
     image: mongo
