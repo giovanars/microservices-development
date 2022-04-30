@@ -1,6 +1,7 @@
 package br.com.order.services;
 
 import br.com.order.infra.MenuService;
+import br.com.order.infra.RabbitMqService;
 import br.com.order.models.dtos.OrderItemResponseDto;
 import br.com.order.models.dtos.OrderRequestDto;
 import br.com.order.models.dtos.OrderResponseDto;
@@ -19,9 +20,12 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final MenuService menuService;
 
-    public OrderServiceImpl(OrderRepository orderRepository, MenuService menuService) {
+    private final RabbitMqService rabbitMqService;
+
+    public OrderServiceImpl(OrderRepository orderRepository, MenuService menuService, RabbitMqService rabbitMqService) {
         this.orderRepository = orderRepository;
         this.menuService = menuService;
+        this.rabbitMqService = rabbitMqService;
     }
 
     @Override
@@ -59,7 +63,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order create(OrderRequestDto orderDto) {
-        return orderRepository.save(new Order(orderDto));
+        Order order = orderRepository.save(new Order(orderDto));
+        rabbitMqService.SendOrder(order);
+        return order;
     }
 
     @Override

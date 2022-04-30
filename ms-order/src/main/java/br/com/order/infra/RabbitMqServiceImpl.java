@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RabbitMqServiceImpl implements RabbitMqService{
+public class RabbitMqServiceImpl implements RabbitMqService {
 
     @Value("${rabbitmq.order.exchange}")
     private String orderExchange;
