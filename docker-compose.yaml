@@ -3,9 +3,7 @@ version: "3.2"
 services:
   menu-api:
     container_name: menu-api
-    image: menu_api
-    build:
-      context: ./ms-menu
+    image: giirochas/ms-menu:latest
     ports:
       - "9000:8080"       
   
