@@ -16,7 +16,7 @@ Baseado nessa solução nesse repositório tem parte da solução técnica, onde
 - ms-order: `giirochas/ms-menu`
 - ms-menu: `giirochas/ms-order`
 
-No arquivo `docker-compose.yaml`(que está an raiz do projeto) temos configurado: 
+No arquivo `docker-compose.yaml`(que está na raiz do projeto) temos configurado: 
 - MongoDB
 - RabbitMQ
 - MS Order
