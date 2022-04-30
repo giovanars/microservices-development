@@ -1,10 +1,21 @@
 package br.com.order.models.dtos;
 
+import java.time.LocalDate;
+
 public class MenuResponse {
 
+    private  String id;
     private String name;
     private String description;
     private Double price;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -29,4 +40,5 @@ public class MenuResponse {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }

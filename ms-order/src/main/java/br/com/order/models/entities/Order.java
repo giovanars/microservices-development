@@ -23,7 +23,7 @@ public class Order {
     public Order(OrderRequestDto orderDto) {
         ObjectId id = new ObjectId();
         this.setId(id.toString());
-        this.setCreatedAt(orderDto.getCreatedAt());
+        this.setCreatedAt(LocalDateTime.now());
         this.setItems(orderDto.getItems());
     }
 

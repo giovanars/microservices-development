@@ -7,11 +7,13 @@ import br.com.order.models.dtos.OrderResponseDto;
 import br.com.order.models.entities.Order;
 import br.com.order.models.entities.OrderItems;
 import br.com.order.repositories.OrderRepository;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -56,15 +58,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order create(OrderRequestDto menuDto) {
-        return orderRepository.save(new Order(menuDto));
+    public Order create(OrderRequestDto orderDto) {
+        return orderRepository.save(new Order(orderDto));
     }
 
     @Override
-    public Order update(String id, OrderRequestDto menuDto) {
-        Order menu = new Order(menuDto);
-        menu.setId(id);
-        return orderRepository.save(menu);
+    public Order update(String id, OrderRequestDto orderDto) {
+        Order order = orderRepository.findById(id).get();
+        order.setItems(orderDto.getItems());
+        return orderRepository.save(order);
     }
 
     @Override

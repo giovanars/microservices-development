@@ -7,21 +7,22 @@ services:
     build:
       context: ./ms-menu
     ports:
-      - "8080:8080"       
-    networks:
-      - microservices-development-network
-  menu-mongo-db:
-    container_name: menu-mongo-db
+      - "9000:8080"       
+  
+  order-api:
+    container_name: order-api
+    image: order_api
+    build:
+      context: ./ms-order
+    ports:
+      - "8000:8081"       
+
+  mongodb:
+    container_name: mongodb
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
-      MONGO_INITDB_DATABASE: menu
+      MONGO_INITDB_DATABASE: microservices-development
     ports:
       - "27017:27017"
-    networks:
-      - microservices-development-network  
-
-networks:
-  microservices-development-network:
-    driver: bridge

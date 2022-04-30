@@ -45,6 +45,6 @@ public class OrderController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable String id) {
         orderService.delete(id);
-        return ResponseEntity.ok("Menu deletado");
+        return ResponseEntity.ok("Pedido deletado");
     }
 }
