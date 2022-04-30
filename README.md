@@ -12,9 +12,9 @@ Baseado nessa solução nesse repositório tem parte da solução técnica, onde
 
  Estamos utilizando docker para a orquestração e automatização dos containers. Os microserviços ms-order e ms-menu tem as imagens pré-compilada e as mesmas foram adicionadas no dokcer hub.
  
- Link das imagens:
-- ms-order: https://hub.docker.com/
-- ms-menu: https://hub.docker.com/
+ Endereço das imagens:
+- ms-order: giirochas/ms-menu
+- ms-menu: giirochas/ms-order
 
 No arquivo `docker-compose.yaml`(que está an raiz do projeto) temos configurado: 
 - MongoDB
