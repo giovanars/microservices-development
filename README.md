@@ -2,23 +2,39 @@
 
 Esse é um repositório destinado a entrega final do trabalho final da disciplina de Microservices Development do curso de MBA em Desenvolvimento Full Stack da FIAP.
 
-O objetivo desse projeto é apresentar o desenvolvimento da solução desenhada na primeira parte do trabalho final. Nesse primiera parte nós descrevemos um problema que queriamos resolver, desenhamos o Domain Story Telling e por fim desenhamos uma solução para resolver o problema como pode ser visto abaixo.
-
-#### Descrição do problema
-![Screenshot](docs/IMG-1.png)
-
-#### Domain Story Telling
-![Screenshot](docs/IMG-2.png)
-
-#### Desenho da solução
-![Screenshot](docs/IMG-3.png)
-
-
-Baseado nessa solução nesse repositório estamos parte da solução técnica, onde desenvolvemos dois dos microserviços mostrados na solução:
+Baseado nessa solução nesse repositório tem parte da solução técnica, onde desenvolvemos três dos microserviços mostrados na solução e uma front-end:
 - ms-order (Ms Pedido, como está no desenho) 
-    //TODO: Descrever a solução e as tecnoligias utilizadas
 - ms-menu  (MS Cardápio, como está no desenho) 
-    //TODO: Descrever a solução e as tecnoligias utilizadas
+- ms-kitchen (MS Cozinha, como está no desenho)
+- front-end
 
-## Como configurar o projeto?
-//TODO: Descrever o passo a passo de configuração dos projetos
+# Sobre o projeto
+
+ Estamos utilizando docker para a orquestração e automatização dos containers. Os microserviços ms-order e ms-menu tem as imagens pré-compilada e as mesmas foram adicionadas no dokcer hub.
+ 
+ Endereço das imagens:
+- ms-order: `giirochas/ms-menu`
+- ms-menu: `giirochas/ms-order`
+
+No arquivo `docker-compose.yaml`(que está na raiz do projeto) temos configurado: 
+- MongoDB
+- RabbitMQ
+- MS Order
+- MS Menu
+
+# Como configurar o projeto?
+
+Para rodar o projeto basta seguir os passos:
+- Rodar o comando `docker-compose up -d` na raiz do projeto para subir o ms-order e ms-menu juntamente com o Mongo e RabbitMQ.
+- Entrar no caminho `front-end/cozinha/ms-cozinha` e rodar o comando `npm install && ng server` para subir o front-end
+- Rodar o projeto ms-kitchen 
+
+Após esses passos os microserviços ficaram disponiveis nas seguintes portas:
+- MS Order: http://localhost:9000/health
+- MS Menu: http://localhost:8000/health
+- Front-end: http://localhost:4200
+
+# Documentação Swagger
+
+- http://localhost:9000/swagger-ui.html
+- http://localhost:8000/swagger-ui.html
