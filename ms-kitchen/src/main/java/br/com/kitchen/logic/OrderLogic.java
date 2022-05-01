@@ -1,10 +1,8 @@
 package br.com.kitchen.logic;
 
 import br.com.kitchen.config.ConnFactory;
-import br.com.kitchen.infra.SlackIntegrationServiceImpl;
 import br.com.kitchen.model.Order;
 import br.com.kitchen.model.dtos.OrderMessageDto;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,29 +28,17 @@ public class OrderLogic implements MessageListener {
     @Autowired
     private ConnFactory connFactory;
 
-    @Autowired
-    private SlackIntegrationServiceImpl slackIntegrationService;
-
-
     @Override
     public void onMessage(Message message) {
         String orderStr = new String(message.getBody(), StandardCharsets.UTF_8);
         OrderMessageDto order = new Gson().fromJson(orderStr, OrderMessageDto.class);
-
-        //TODO: Enviar notificação no slack
-
-        try {
-            slackIntegrationService.SendMessage(order.getId());
-        } catch (JsonProcessingException e) {
-            logger.info("Erro pra enviar mensagem pelo Slack");
-        }
 
         processNewOrder(order);
     }
 
     public void processNewOrder(OrderMessageDto order){
         //TODO: Criar order no banco
-        logger.info("New Order Info.: " + new Gson().toJson(order, Order.class));
+        logger.info("New Order Info.: " + new Gson().toJson(order, OrderMessageDto.class));
 
     }
 
