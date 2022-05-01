@@ -14,8 +14,8 @@ public class ConnFactory {
     @Value("${rabbitmq.username}")
     String username;
 
-    @Value("${rabbitmq.passwd}")
-    String passwd;
+    @Value("${rabbitmq.password}")
+    String password;
 
     @Value("${rabbitmq.virtualHost}")
     String virtualHost;
@@ -24,7 +24,7 @@ public class ConnFactory {
     ConnectionFactory connectionFactory(){
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(hostname);
         cachingConnectionFactory.setUsername(username);
-        cachingConnectionFactory.setPassword(passwd);
+        cachingConnectionFactory.setPassword(password);
         cachingConnectionFactory.setVirtualHost(virtualHost);
         return cachingConnectionFactory;
     }

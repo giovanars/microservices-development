@@ -1,37 +1,55 @@
 package br.com.kitchen.infra;
 
+import br.com.kitchen.model.dtos.SlackRequestDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
-import java.net.http.HttpHeaders;
+import java.io.IOException;
 
-public class SlackIntegrationService {
-    private static final String HOOKS_URL = "https://hooks.slack.com/services/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";
+@Service
+public class SlackIntegrationServiceImpl implements SlackIntegrationService {
 
-    public void sendMessage() throws JsonProcessingException {
+    @Value("${slack.webhook}")
+    private String slackWebhook;
 
+    @Value("${slack.username}")
+    private String slackUsername;
 
-        String userWebhookUrl = String.format(HOOKS_URL, userChannelId);
+    @Value("${slack.channel}")
+    private String slackChannel;
 
-        RestTemplate restTemplate = new RestTemplate();
+    @Value("${slack.icon.emoji}")
+    private String slackIconEmoji;
 
-        HttpHeaders headers = new HttpHeaders();
+    @Override
+    public void SendMessage(String orderId) throws JsonProcessingException {
 
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        CloseableHttpClient client = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost(slackWebhook);
 
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(formatMessage(orderId));
 
+            StringEntity entity = new StringEntity(json);
+            httpPost.setEntity(entity);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
 
-        ObjectMapper objectMapper = new ObjectMapper();
+            client.execute(httpPost);
+            client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        String messageJson = objectMapper.writeValueAsString(message);
-
-        HttpEntity<String> entity = new HttpEntity<>(messageJson, headers);
-
-        restTemplate.exchange(userWebhookUrl, HttpMethod.POST, entity, String.class);
-
+    private SlackRequestDto formatMessage(String orderId){
+        return new SlackRequestDto(slackUsername, slackChannel, slackIconEmoji, "Pedido" + orderId + "recebido!");
     }
 }

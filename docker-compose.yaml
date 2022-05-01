@@ -9,9 +9,7 @@ services:
   
   order-api:
     container_name: order-api
-    image: order_api
-    build:
-      context: ./ms-order
+    image: giirochas/ms-order:latest
     ports:
       - "8000:8081"       
 
@@ -24,3 +22,13 @@ services:
       MONGO_INITDB_DATABASE: microservices-development
     ports:
       - "27017:27017"
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
