@@ -36,5 +36,4 @@ Após esses passos os microserviços ficaram disponiveis nas seguintes portas:
 
 # Documentação Swagger
 
-- http://localhost:9000/swagger-ui.html
 - http://localhost:8000/swagger-ui.html
