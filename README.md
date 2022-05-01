@@ -26,7 +26,7 @@ No arquivo `docker-compose.yaml`(que está na raiz do projeto) temos configurado
 
 Para rodar o projeto basta seguir os passos:
 - Rodar o comando `docker-compose up -d` na raiz do projeto para subir o ms-order e ms-menu juntamente com o Mongo e RabbitMQ.
-- Entrar no caminho `front-end/cozinha/ms-cozinha` e rodar o comando `npm install && ng server` para subir o front-end
+- Entrar no caminho `front-end/venda/ms-vendas` e rodar o comando `npm install && ng server` para subir o front-end
 - Rodar o projeto ms-kitchen 
 
 Após esses passos os microserviços ficaram disponiveis nas seguintes portas:
