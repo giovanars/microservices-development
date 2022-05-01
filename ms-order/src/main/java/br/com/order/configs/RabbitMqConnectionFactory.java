@@ -12,16 +12,18 @@ public class RabbitMqConnectionFactory {
     String hostname;
     @Value("${rabbitmq.username}")
     String username;
-
     @Value("${rabbitmq.password}")
     String password;
+
+    @Value("${rabbitmq.virtualHost}")
+    String virtualHost;
 
     @Bean
     ConnectionFactory connectionFactory(){
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(hostname);
         cachingConnectionFactory.setUsername(username);
         cachingConnectionFactory.setPassword(password);
-        cachingConnectionFactory.setVirtualHost("");
+        cachingConnectionFactory.setVirtualHost(virtualHost);
         return cachingConnectionFactory;
     }
 
